@@ -13,7 +13,8 @@ class Scraper:
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
-            'Cache-Control': 'max-age=0'
+            'Cache-Control': 'max-age=0',
+            'DNT': '1'
         }
         self.__url = url
         self.__req = requests.get(
