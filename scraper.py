@@ -71,6 +71,7 @@ class Scraper:
     def get_myntra_data(self):
         div = re.findall(
             r'{"landing(.*)"deliveryPromise":""}', self.__req.text)
+        print(div)
         if len(div) == 0:
             print('No results found')
         else:
@@ -103,7 +104,7 @@ class Scraper:
                     self.__data.append(
                         {'store': 'myntra', 'title': title, 'price': price, 'url': url, 'image_link': image})
             except:
-                print('No results found')
+                print('Error No results found')
             print(self.__data)
         return self.__data
 
