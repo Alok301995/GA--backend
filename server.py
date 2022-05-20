@@ -19,7 +19,7 @@ def get_amazon_data(product):
 
 @server.route('/api/myntra/<product>', methods=['GET'])
 def get_myntra_data(product):
-    url = f'https://www.myntra.com/{product}?p=1'
+    url = f'https://www.myntra.com/{product}'
     return jsonify(Scraper(url).get_myntra_data())
 
 @server.route('/api/nykaa/<product>', methods=['GET'])

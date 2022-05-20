@@ -104,6 +104,7 @@ class Scraper:
                         {'store': 'myntra', 'title': title, 'price': price, 'url': url, 'image_link': image})
             except:
                 print('No results found')
+            print(self.__data)
         return self.__data
 
     def get_nykaa_data(self):
