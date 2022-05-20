@@ -69,6 +69,7 @@ class Scraper:
         return self.__data
 
     def get_myntra_data(self):
+        print(self.__req.text)
         div = re.findall(
             r'{"landing(.*)"deliveryPromise":""}', self.__req.text)
         print(div)
