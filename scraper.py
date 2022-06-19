@@ -197,7 +197,7 @@ class Scraper:
                 print('No results found')
         return self.__data
 
-amazon_url = 'https://www.amazon.in/s?k=cloths&crid=1RQH9INII9MC9&sprefix=cloth%2Caps%2C337&ref=nb_sb_noss_2'
+# amazon_url = 'https://www.amazon.in/s?k=cloths&crid=1RQH9INII9MC9&sprefix=cloth%2Caps%2C337&ref=nb_sb_noss_2'
 
-sc = Scraper(amazon_url).get_amazon_data()
-print(sc)
+# sc = Scraper(amazon_url).get_amazon_data()
+# print(sc)
