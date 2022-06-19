@@ -63,7 +63,7 @@ class Scraper:
         proxies = {
             'http': proxy,
         }
-        
+        user_agent = random_user_agent()
         self.__headers = {
             'User-Agent': f'{self.user_agent}',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
