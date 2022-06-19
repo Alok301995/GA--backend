@@ -48,18 +48,12 @@ def random_proxy():
     return random.choice(proxy_list)
 
 
-# scrape amazon product page with random user agent and random proxy
-# def scrape_amazon_product_page(url):
-#     headers = {'User-Agent': random_user_agent()}
-#     proxies = {'http': random_proxy()}
-#     response = requests.get(url, headers=headers, proxies=proxies)
-#     return response.text
-
-
 class Scraper:
     def __init__(self, url , user_agent=None, proxy=None):
+        self.user_agent = random_user_agent(),
+        self.proxy ={'http': random_proxy()},
         self.__headers = {
-            'User-Agent': f'{user_agent}',
+            'User-Agent': f'{self.user_agent}',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -70,7 +64,7 @@ class Scraper:
         }
         self.__url = url
         self.__req = requests.get(
-            url, headers=self.__headers ,proxies=proxy)
+            url, headers=self.__headers ,proxies=self.proxy)
         self.__soup = bs(self.__req.text, 'lxml')
         self.__data = []
 
@@ -180,10 +174,4 @@ class Scraper:
                 print('No results found')
         return self.__data
 
-
-url = 'https://www.amazon.in/s?k=bed+sheet&crid=2DNK8XCWG7N2L&sprefix=bed+%2Caps%2C256&ref=nb_sb_ss_ts-doa-p_2_4'
-user_agent = random_user_agent()
-proxy = {'http':random_proxy()}
-sc = Scraper(url ,user_agent=user_agent ,proxy=proxy).get_amazon_data()
-print(sc)
 

@@ -3,9 +3,10 @@ from flask import Flask, request, jsonify
 from scraper import Scraper
 server = Flask(__name__)
 
-@server.route('/', methods=['GET'])
-def index():
-    return 'Hello, World!'
+
+# @server.route('/', methods=['GET'])
+# def index():
+#     return 'Hello, World!'
 
 @server.route('/api/flipkart/<product>', methods=['GET'])
 def get_flipkart_data(product):
