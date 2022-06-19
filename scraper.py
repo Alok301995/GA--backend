@@ -63,20 +63,31 @@ class Scraper:
         proxies = {
             'http': proxy,
         }
+        session=requests.Session()
+        # session.proxies=proxies
         self.user_agent = random_user_agent(),
-        self.__headers = {
-            'User-Agent': f'{self.user_agent}',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Cache-Control': 'max-age=0',
-            'DNT': '1'
-        }
+        session.headers['User-Agent'] = f'{self.user_agent}'
+        session.headers['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+        session.headers['Accept-Language'] = 'en-US,en;q=0.9'
+        session.headers['Accept-Encoding'] = 'gzip, deflate, br'
+        session.headers['Connection'] = 'keep-alive'
+        session.headers['Upgrade-Insecure-Requests'] = '1'
+        session.headers['Cache-Control'] = 'max-age=0'
+        session.headers['Pragma'] = 'no-cache'
+        session.headers['Expires'] = '0'
+        session.headers['DNT'] = '1'
+        # self.__headers = {
+        #     'User-Agent': f'{self.user_agent}',
+        #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        #     'Accept-Language': 'en-US,en;q=0.5',
+        #     'Accept-Encoding': 'gzip, deflate, br',
+        #     'Connection': 'keep-alive',
+        #     'Upgrade-Insecure-Requests': '1',
+        #     'Cache-Control': 'max-age=0',
+        #     'DNT': '1'
+        # }
         self.__url = url
-        self.__req = requests.get(
-            url, headers=self.__headers ,proxies=proxies)
+        self.__req = session.get(self.__url,headers=session.headers)
         self.__soup = bs(self.__req.text, 'lxml')
         self.__data = []
 
@@ -185,3 +196,8 @@ class Scraper:
             except:
                 print('No results found')
         return self.__data
+
+amazon_url = 'https://www.amazon.in/s?k=cloths&crid=1RQH9INII9MC9&sprefix=cloth%2Caps%2C337&ref=nb_sb_noss_2'
+
+sc = Scraper(amazon_url).get_amazon_data()
+print(sc)
