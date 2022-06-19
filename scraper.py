@@ -58,7 +58,7 @@ def setup_proxy():
 
 
 class Scraper:
-    def __init__(self, url , user_agent=None, proxy=None):
+    def __init__(self, url):
         proxy = random_proxy()
         proxies = {
             'http': proxy,
