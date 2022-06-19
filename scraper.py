@@ -181,9 +181,9 @@ class Scraper:
         return self.__data
 
 
-url = 'https://www.myntra.com/men-casual-shirts'
+url = 'https://www.amazon.in/s?k=bed+sheet&crid=2DNK8XCWG7N2L&sprefix=bed+%2Caps%2C256&ref=nb_sb_ss_ts-doa-p_2_4'
 user_agent = random_user_agent()
 proxy = {'http':random_proxy()}
-sc = Scraper(url ,user_agent=user_agent ,proxy=proxy).get_myntra_data()
+sc = Scraper(url ,user_agent=user_agent ,proxy=proxy).get_amazon_data()
 print(sc)
 
