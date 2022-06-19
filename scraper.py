@@ -47,11 +47,23 @@ def random_proxy():
     ]
     return random.choice(proxy_list)
 
+# setup proxy in requests
+def setup_proxy():
+    proxy = random_proxy()
+    proxies = {
+        'http': proxy,
+        'https': proxy
+    }
+    return proxies
+
 
 class Scraper:
     def __init__(self, url , user_agent=None, proxy=None):
+        proxy = random_proxy()
+        proxies = {
+            'http': proxy,
+        }
         self.user_agent = random_user_agent(),
-        self.proxy ={'http': random_proxy()},
         self.__headers = {
             'User-Agent': f'{self.user_agent}',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -64,7 +76,7 @@ class Scraper:
         }
         self.__url = url
         self.__req = requests.get(
-            url, headers=self.__headers ,proxies=self.proxy)
+            url, headers=self.__headers ,proxies=proxies)
         self.__soup = bs(self.__req.text, 'lxml')
         self.__data = []
 
@@ -173,5 +185,3 @@ class Scraper:
             except:
                 print('No results found')
         return self.__data
-
-
